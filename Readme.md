@@ -1,7 +1,7 @@
 # Личный проект «Кексобукинг» [![Build status][travis-image]][travis-url]
 
 * Студент: [Артём Лисовский](https://up.htmlacademy.ru/javascript/21/user/1584903).
-* Наставник: `Неизвестно`.
+* Наставник: `Илья Локалин`.
 
 ---
 
