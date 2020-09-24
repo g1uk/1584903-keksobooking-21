@@ -32,23 +32,25 @@ const OFFER_PHOTOS = [
   `http://o0.github.io/assets/images/tokyo/hotel3.jpg`
 ];
 const NEARBY_OFFERS_AMOUNT = 8;
+const MAP_BUTTON_WIDTH = 50;
+const MAP_BUTTON_HEIGHT = 70;
 
-let randomOfNumbers = function (min, max) {
+const randomOfNumbers = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
-let arrayRandomElement = function (array) {
-  let randomElement = Math.floor(Math.random() * array.length);
+const arrayRandomElement = function (array) {
+  const randomElement = Math.floor(Math.random() * array.length);
   return array[randomElement];
 };
-let elementsOfRandomArrayLength = function (array) {
-  let newArray = [];
-  for (let i = 0; i < randomOfNumbers(1, array.length); i++) {
+const elementsOfRandomArrayLength = function (array) {
+  const newArray = [];
+  for (let i = 0; i < randomOfNumbers(1, array.length); i += 1) {
     newArray.push(array[i]);
   }
   return newArray;
 };
 
-let nearbyOffer = {
+const nearbyOffer = {
   "author": {
     "avatar": AUTHOR_AVATAR
   },
@@ -71,20 +73,23 @@ let nearbyOffer = {
   }
 };
 
-let mapFadedToken = document.querySelector(`.map`);
+const mapFadedToken = document.querySelector(`.map`);
 mapFadedToken.classList.remove(`map--faded`);
 
-let elementList = document.querySelector(`.map__pins`);
+const elementList = document.querySelector(`.map__pins`);
 
-let addressMark = document.querySelector(`#pin`)
+const addressMark = document.querySelector(`#pin`)
   .content
   .querySelector(`.map__pin`);
 
-let fragment = document.createDocumentFragment();
+const MAP_BUTTON_WIDTH_GAP = MAP_BUTTON_WIDTH / 2;
+const MAP_BUTTON_HEIGHT_GAP = MAP_BUTTON_HEIGHT / 2;
 
-let generateNearbyOffers = function () {
-  let newArray = [];
-  for (let i = 1; i <= NEARBY_OFFERS_AMOUNT; i++) {
+const fragment = document.createDocumentFragment();
+
+const generateNearbyOffers = function () {
+  const newArray = [];
+  for (let i = 1; i <= NEARBY_OFFERS_AMOUNT; i += 1) {
     nearbyOffer.author.avatar = `img/avatars/user0${i}.png`;
     nearbyOffer.location.x = randomOfNumbers(MIN_X, MAX_X);
     nearbyOffer.location.y = randomOfNumbers(MIN_Y, MAX_Y);
@@ -106,18 +111,19 @@ let generateNearbyOffers = function () {
 };
 generateNearbyOffers();
 
-let createAddressMark = function (offer) {
-  let offerMark = addressMark.cloneNode(true);
-  offerMark.style = `left: ${offer.location.x}px; top: ${offer.location.y}px;`;
+const createAddressMark = function (offer) {
+  const offerMark = addressMark.cloneNode(true);
+  offerMark.style = `left: ${offer.location.x + MAP_BUTTON_WIDTH_GAP}px; top: ${offer.location.y + MAP_BUTTON_HEIGHT_GAP}px;`;
+  console.log(offer.location.x + MAP_BUTTON_WIDTH_GAP)
   offerMark.querySelector(`img`).src = `${offer.author.avatar}`;
   offerMark.querySelector(`img`).alt = `${offer.offer.title}`;
   return offerMark;
 };
 
-for (let i = 0; i < generateNearbyOffers().length; i++) {
-  fragment.appendChild(createAddressMark(generateNearbyOffers()[i]));
-}
+generateNearbyOffers().forEach(function (item, i, arr) {
+  fragment.append(createAddressMark(arr[i]));
+});
 
-elementList.appendChild(fragment);
+elementList.append(fragment);
 
 
