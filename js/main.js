@@ -8,12 +8,6 @@ const OFFER_DESCRIPTION = ``;
 const OFFER_PRICE = 0;
 const LOCATION_X = 0;
 const LOCATION_Y = 0;
-const MIN_X = 100;
-const MAX_X = 600;
-const MIN_Y = 130;
-const MAX_Y = 630;
-const MIN_OFFER_PRICE = 1000;
-const MAX_OFFER_PRICE = 10000;
 const OFFER_TYPE = [`palace`, `flat`, `house`, `bungalow`];
 const OFFER_ROOMS = [1, 2, 3, 4, 5];
 const OFFER_CHECKIN = [`12:00`, `13:00`, `14:00`];
@@ -31,24 +25,6 @@ const OFFER_PHOTOS = [
   `http://o0.github.io/assets/images/tokyo/hotel2.jpg`,
   `http://o0.github.io/assets/images/tokyo/hotel3.jpg`
 ];
-const NEARBY_OFFERS_AMOUNT = 8;
-const MAP_BUTTON_WIDTH = 50;
-const MAP_BUTTON_HEIGHT = 70;
-
-const randomOfNumbers = function (min, max) {
-  return Math.floor(Math.random() * (max - min + 1)) + min;
-};
-const arrayRandomElement = function (array) {
-  const randomElement = Math.floor(Math.random() * array.length);
-  return array[randomElement];
-};
-const elementsOfRandomArrayLength = function (array) {
-  const newArray = [];
-  for (let i = 0; i < randomOfNumbers(1, array.length); i += 1) {
-    newArray.push(array[i]);
-  }
-  return newArray;
-};
 
 const nearbyOffer = {
   "author": {
@@ -73,6 +49,31 @@ const nearbyOffer = {
   }
 };
 
+const MIN_LOCATION_X = 100;
+const MAX_LOCATION_X = 600;
+const MIN_LOCATION_Y = 130;
+const MAX_LOCATION_Y = 630;
+const MIN_OFFER_PRICE = 1000;
+const MAX_OFFER_PRICE = 10000;
+const NEARBY_OFFERS_AMOUNT = 8;
+const MAP_BUTTON_WIDTH = 50;
+const MAP_BUTTON_HEIGHT = 70;
+
+const randomOfNumbers = function (min, max) {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+const arrayRandomElement = function (array) {
+  const randomElement = Math.floor(Math.random() * array.length);
+  return array[randomElement];
+};
+const elementsOfRandomArrayLength = function (array) {
+  const randomLengthArray = [];
+  for (let i = 0; i < randomOfNumbers(1, array.length); i += 1) {
+    randomLengthArray.push(array[i]);
+  }
+  return randomLengthArray;
+};
+
 const mapFadedToken = document.querySelector(`.map`);
 mapFadedToken.classList.remove(`map--faded`);
 
@@ -87,13 +88,13 @@ const MAP_BUTTON_HEIGHT_GAP = MAP_BUTTON_HEIGHT / 2;
 
 const fragment = document.createDocumentFragment();
 
-const generateNearbyOffers = function () {
-  const newArray = [];
+const offersList = function () {
+  const arrayForOffers = [];
   for (let i = 1; i <= NEARBY_OFFERS_AMOUNT; i += 1) {
     nearbyOffer.author.avatar = `img/avatars/user0${i}.png`;
-    nearbyOffer.location.x = randomOfNumbers(MIN_X, MAX_X);
-    nearbyOffer.location.y = randomOfNumbers(MIN_Y, MAX_Y);
-    nearbyOffer.offer.title = `Заголовок предложения ` + i;
+    nearbyOffer.location.x = randomOfNumbers(MIN_LOCATION_X, MAX_LOCATION_X);
+    nearbyOffer.location.y = randomOfNumbers(MIN_LOCATION_Y, MAX_LOCATION_Y);
+    nearbyOffer.offer.title = `Заголовок предложения ${i}`;
     nearbyOffer.offer.address = `${nearbyOffer.location.x}, ${nearbyOffer.location.y}`;
     nearbyOffer.offer.price = randomOfNumbers(MIN_OFFER_PRICE, MAX_OFFER_PRICE);
     nearbyOffer.offer.type = arrayRandomElement(OFFER_TYPE);
@@ -102,25 +103,25 @@ const generateNearbyOffers = function () {
     nearbyOffer.offer.checkin = arrayRandomElement(OFFER_CHECKIN);
     nearbyOffer.offer.checkout = arrayRandomElement(OFFER_CHECKOUT);
     nearbyOffer.offer.features = elementsOfRandomArrayLength(OFFER_FEATURES);
-    nearbyOffer.offer.description = `Отличная квартира типа ` + nearbyOffer.offer.type + `, цена: ` + nearbyOffer.offer.price;
+    nearbyOffer.offer.description = `Отличная квартира типа ${nearbyOffer.offer.type}, цена: ${nearbyOffer.offer.price}`;
     nearbyOffer.offer.photos = elementsOfRandomArrayLength(OFFER_PHOTOS);
 
-    newArray.push(JSON.parse(JSON.stringify(nearbyOffer)));
+    arrayForOffers.push(JSON.parse(JSON.stringify(nearbyOffer)));
   }
-  return newArray;
+  return arrayForOffers;
 };
-generateNearbyOffers();
+offersList();
 
 const createAddressMark = function (offer) {
   const offerMark = addressMark.cloneNode(true);
+  const offerMarkImage = offerMark.querySelector(`img`);
   offerMark.style = `left: ${offer.location.x + MAP_BUTTON_WIDTH_GAP}px; top: ${offer.location.y + MAP_BUTTON_HEIGHT_GAP}px;`;
-  console.log(offer.location.x + MAP_BUTTON_WIDTH_GAP)
-  offerMark.querySelector(`img`).src = `${offer.author.avatar}`;
-  offerMark.querySelector(`img`).alt = `${offer.offer.title}`;
+  offerMarkImage.src = `${offer.author.avatar}`;
+  offerMarkImage.alt = `${offer.offer.title}`;
   return offerMark;
 };
 
-generateNearbyOffers().forEach(function (item, i, arr) {
+offersList().forEach(function (item, i, arr) {
   fragment.append(createAddressMark(arr[i]));
 });
 
