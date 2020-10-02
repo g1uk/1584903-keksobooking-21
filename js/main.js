@@ -53,6 +53,10 @@ const addressMark = document.querySelector(`#pin`)
   .content
   .querySelector(`.map__pin`);
 
+const addressCard = document.querySelector(`#card`)
+  .content
+  .querySelector(`.map__card`);
+
 const fragment = document.createDocumentFragment();
 
 const offersList = function () {
@@ -89,8 +93,34 @@ const createAddressMark = function (offer) {
   return offerMark;
 };
 
+const createAddressCard = function (offer) {
+  const offerAddress = addressCard.cloneNode(true);
+  const popupTitle = offerAddress.querySelector(`.popup__title`);
+  const popupTextAddress = offerAddress.querySelector(`.popup__text--address`);
+  const popupTextPrice = offerAddress.querySelector(`.popup__text--price`);
+  const popupType = offerAddress.querySelector(`.popup__type`);
+  const popupTextCapacity = offerAddress.querySelector(`.popup__text--capacity`);
+  const popupTextTime = offerAddress.querySelector(`.popup__text--time`);
+  const popupFeatures = offerAddress.querySelector(`.popup__features`);
+  const popupDescription = offerAddress.querySelector(`.popup__description`);
+  const popupPhoto = offerAddress.querySelector(`.popup__photo`);
+  const popupAvatar = offerAddress.querySelector(`.popup__avatar`);
+  popupTitle.textContent = offer.offer.title;
+  popupTextAddress.textContent = offer.offer.address;
+  popupTextPrice.textContent = `${offer.offer.price}₽/ночь`;
+  popupType.textContent = offer.offer.type;
+  popupTextCapacity.textContent = `${offer.offer.rooms} комнаты для ${offer.offer.guests} гостей.`;
+  popupTextTime.textContent = `Заезд после ${offer.offer.checkin}, выезд до ${offer.offer.checkout}.`;
+  popupFeatures.textContent = offer.offer.features.toString();
+  popupDescription.textContent = offer.offer.description;
+  popupPhoto.src = offer.offer.photos[0];
+  popupAvatar.src = offer.author.avatar;
+  return offerAddress;
+};
+
 offersList().forEach(function (item, i, arr) {
   fragment.append(createAddressMark(arr[i]));
+  fragment.append(createAddressCard(arr[0]));
 });
 
 elementList.append(fragment);
