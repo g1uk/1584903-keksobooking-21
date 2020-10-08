@@ -63,6 +63,11 @@
     window.form.completion();
 
     const offersList = function () {
+      const arrayForOffers = [];
+      // eslint-disable-next-line guard-for-in
+      for (const index in offerTypes) {
+        arrayOfOfferTypes.push(offerTypes[index].valueOf());
+      }
       for (let i = 1; i <= NEARBY_OFFERS_AMOUNT; i += 1) {
         const nearbyOffer = {author: {}, offer: {}, location: {}};
         nearbyOffer.author.avatar = `img/avatars/user0${i}.png`;
