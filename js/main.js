@@ -1,5 +1,10 @@
 'use strict';
 
+// const arrayForOffers = [];
+// for (const index in offerTypes) {
+//   arrayOfOfferTypes.push(offerTypes[index].valueOf());
+// }
+
 // const addressCard = document.querySelector(`#card`)
 //   .content
 //   .querySelector(`.map__card`);
