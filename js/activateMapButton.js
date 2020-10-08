@@ -6,7 +6,8 @@
   const activateWindowsFunctions = function () {
     window.page.activate();
     window.form.completion();
-    window.mark.activateNearbyOffers();
+    window.mark.activateNearbyOffersMarks();
+    window.card.activateNearbyOfferCard();
   };
   mapPinMain.addEventListener(`mousedown`, function (evt) {
     if (evt.button === 0) {
