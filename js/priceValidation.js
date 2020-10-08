@@ -5,13 +5,13 @@
   const offerTypes = {
     palace: {
       name: `Дворец`,
-      min: 5000},
+      min: 10000},
     flat: {
       name: `Квартира`,
       min: 1000},
     house: {
       name: `Дом`,
-      min: 10000},
+      min: 5000},
     bungalow: {
       name: `Бунгало`,
       min: 0

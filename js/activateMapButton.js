@@ -7,7 +7,9 @@
     if (evt.button === 0) {
       window.page.activate();
       window.form.completion();
+      window.mark.activateNearbyOffers();
     } else {
+      // eslint-disable-next-line no-alert
       alert(`Please click your primary mouse button`);
     }
   });
@@ -15,7 +17,9 @@
     if (evt.keyCode === ENTER_KEYCODE) {
       window.page.activate();
       window.form.completion();
+      window.mark.activateNearbyOffers();
     } else {
+      // eslint-disable-next-line no-alert
       alert(`Please press 'Enter' button`);
     }
   });
