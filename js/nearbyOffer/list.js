@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  const activateNearbyOffers = function () {
+  const nearbyOfferList = function () {
 
     const OFFER_ROOMS = [1, 2, 3, 100];
     const OFFER_CHECKIN = [`12:00`, `13:00`, `14:00`];
@@ -33,10 +33,6 @@
     const MIN_OFFER_PRICE = 1000;
     const MAX_OFFER_PRICE = 10000;
     const NEARBY_OFFERS_AMOUNT = 8;
-    const MAP_BUTTON_WIDTH = 50;
-    const MAP_BUTTON_HEIGHT = 70;
-    const MAP_BUTTON_WIDTH_GAP = MAP_BUTTON_WIDTH / 2;
-    const MAP_BUTTON_HEIGHT_GAP = MAP_BUTTON_HEIGHT / 2;
 
     const randomOfNumbers = function (min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -52,15 +48,6 @@
       }
       return randomLengthArray;
     };
-
-    const elementList = document.querySelector(`.map__pins`);
-
-    const addressMark = document.querySelector(`#pin`)
-      .content
-      .querySelector(`.map__pin`);
-
-    const fragment = document.createDocumentFragment();
-    window.form.completion();
 
     const offersList = function () {
       const arrayForOffers = [];
@@ -89,24 +76,10 @@
       }
       return arrayForOffers;
     };
-    offersList();
-
-    const createAddressMark = function (offer) {
-      const offerMark = addressMark.cloneNode(true);
-      const offerMarkImage = offerMark.querySelector(`img`);
-      offerMark.style = `left: ${offer.location.x + MAP_BUTTON_WIDTH_GAP}px; top: ${offer.location.y + MAP_BUTTON_HEIGHT_GAP}px;`;
-      offerMarkImage.src = `${offer.author.avatar}`;
-      offerMarkImage.alt = `${offer.offer.title}`;
-      return offerMark;
-    };
-
-    offersList().forEach(function (item, i, arr) {
-      fragment.append(createAddressMark(arr[i]));
-    });
-
-    elementList.append(fragment);
+    return offersList();
   };
-  window.mark = {
-    activateNearbyOffers
+
+  window.list = {
+    nearbyOfferList
   };
 })();
