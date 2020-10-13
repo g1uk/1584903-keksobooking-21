@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  const ENTER_KEYCODE = 13;
+  const PRIMARY_MOUSE_BUTTON = 0;
   const mapPinMain = document.querySelector(`.map__pin--main`);
   const activateWindowsFunctions = function () {
     window.page.activate();
@@ -10,15 +10,15 @@
     window.card.activateNearbyOfferCard();
   };
   mapPinMain.addEventListener(`mousedown`, function (evt) {
-    if (evt.button === 0) {
-      activateWindowsFunctions();
+    if (evt.button === PRIMARY_MOUSE_BUTTON) {
+      activateWindowsFunctions(); // todo активация, построение меток и карточек накладывается сверху при каждом нажатии
     } else {
       // eslint-disable-next-line no-alert
       alert(`Please click your primary mouse button`);
     }
   });
   mapPinMain.addEventListener(`keydown`, function (evt) {
-    if (evt.keyCode === ENTER_KEYCODE) {
+    if (evt.key === `Enter`) {
       activateWindowsFunctions();
     } else {
       // eslint-disable-next-line no-alert
