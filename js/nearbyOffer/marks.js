@@ -14,9 +14,6 @@
       .content
       .querySelector(`.map__pin`);
 
-    const offerList = window.list.nearbyOfferList();
-
-    const fragment = document.createDocumentFragment();
     window.form.completion();
 
     const createAddressMark = function (offer) {
@@ -28,11 +25,14 @@
       return offerMark;
     };
 
-    offerList.forEach(function (item, i, arr) {
-      fragment.append(createAddressMark(arr[i]));
-    });
+    window.load(function (cards) {
+      const fragment = document.createDocumentFragment();
+      for (let i = 0; i < cards.length; i++) {
+        fragment.appendChild(createAddressMark(cards[i]));
+      }
+      elementList.append(fragment);
+    }, function () {});
 
-    elementList.append(fragment);
   };
   window.mark = {
     activateNearbyOffersMarks

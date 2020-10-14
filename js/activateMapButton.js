@@ -11,7 +11,7 @@
   };
   mapPinMain.addEventListener(`mousedown`, function (evt) {
     if (evt.button === PRIMARY_MOUSE_BUTTON) {
-      activateWindowsFunctions(); // todo активация, построение меток и карточек накладывается сверху при каждом нажатии
+      activateWindowsFunctions();
     } else {
       // eslint-disable-next-line no-alert
       alert(`Please click your primary mouse button`);
