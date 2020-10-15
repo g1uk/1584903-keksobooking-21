@@ -9,9 +9,7 @@
   .content
   .querySelector(`.map__card`);
 
-    const offerList = window.list.nearbyOfferList();
-
-    const fragment = document.createDocumentFragment();
+    const imgFragment = document.createDocumentFragment();
 
     const createAddressCard = function ({offer, author}) {
       const offerAddress = addressCard.cloneNode(true);
@@ -23,6 +21,7 @@
       const popupTextTime = offerAddress.querySelector(`.popup__text--time`);
       const popupFeatures = offerAddress.querySelector(`.popup__features`);
       const popupDescription = offerAddress.querySelector(`.popup__description`);
+      const popupPhotos = offerAddress.querySelector(`.popup__photos`);
       const popupPhoto = offerAddress.querySelector(`.popup__photo`);
       const popupAvatar = offerAddress.querySelector(`.popup__avatar`);
       const {title, address, price, type, rooms, guests, checkin, checkout, features, description, photos} = offer;
@@ -34,18 +33,27 @@
       popupTextTime.textContent = `Заезд после ${checkin}, выезд до ${checkout}.`;
       popupFeatures.textContent = features.toString();
       popupDescription.textContent = description;
-      popupPhoto.src = photos[0];
+      photos.forEach(function (item, index) {
+        if (index > 0) {
+          const photo = popupPhoto.cloneNode();
+          photo.src = item;
+          imgFragment.append(photo);
+        } else {
+          popupPhoto.src = item;
+        }
+      });
+      popupPhotos.append(imgFragment);
       popupAvatar.src = author.avatar;
       return offerAddress;
     };
 
-    offerList.forEach(function (item, i, arr) {
-
-      fragment.append(createAddressCard(arr[0]));
-
-    });
-
-    elementList.append(fragment);
+    window.load(function (cards) {
+      const fragment = document.createDocumentFragment();
+      for (let i = 0; i < cards.length; i++) {
+        fragment.append(createAddressCard(cards[0]));
+      }
+      elementList.append(fragment);
+    }, function () {});
   };
   window.card = {
     activateNearbyOfferCard

@@ -26,8 +26,8 @@
       bungalow: `Бунгало`
     };
     const arrayOfOfferTypes = [];
-    const MIN_LOCATION_X = 100;
-    const MAX_LOCATION_X = 600;
+    const MIN_LOCATION_X = 0;
+    const MAX_LOCATION_X = 1100;
     const MIN_LOCATION_Y = 130;
     const MAX_LOCATION_Y = 630;
     const MIN_OFFER_PRICE = 1000;
