@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  const activateNearbyOfferCard = function ({offer, author}) {
+  const createNearbyOfferCard = ({offer, author}) => {
 
     const elementList = document.querySelector(`.map__pins`);
 
@@ -36,7 +36,7 @@
     popupTextTime.textContent = `Заезд после ${checkin}, выезд до ${checkout}.`;
     popupFeatures.textContent = features.toString();
     popupDescription.textContent = description;
-    photos.forEach(function (item) {
+    photos.forEach((item) => {
       const photo = img.cloneNode();
       photo.src = item;
       imgFragment.append(photo);
@@ -47,6 +47,6 @@
     return offerAddress;
   };
   window.card = {
-    activateNearbyOfferCard
+    createNearbyOfferCard
   };
 })();

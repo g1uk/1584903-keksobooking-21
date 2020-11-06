@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-  const activateNearbyOffersMarks = function (offer) {
+  const createNearbyOfferMarks = (offer) => {
 
     const MAP_BUTTON_WIDTH = 50;
     const MAP_BUTTON_HEIGHT = 70;
@@ -22,12 +22,12 @@
     offerMarkImage.src = `${offer.author.avatar}`;
     offerMarkImage.alt = `${offer.offer.title}`;
     offerMark.addEventListener("click", () => {
-      window.card.activateNearbyOfferCard(offer);
+      window.card.createNearbyOfferCard(offer);
     });
     elementList.append(offerMark);
     return offerMark;
   };
   window.marks = {
-    activateNearbyOffersMarks
+    createNearbyOfferMarks
   };
 })();

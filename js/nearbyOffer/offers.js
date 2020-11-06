@@ -4,7 +4,7 @@
   window.offers = function () {
     function markersLoad(cards) {
       cards.forEach(function (item) {
-        window.marks.activateNearbyOffersMarks(item);
+        window.marks.createNearbyOfferMarks(item);
       });
     }
 
