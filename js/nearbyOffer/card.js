@@ -3,7 +3,7 @@
 (function () {
   const activateNearbyOfferCard = function ({offer, author}) {
 
-    // const elementList = document.querySelector(`.map__pins`);
+    const elementList = document.querySelector(`.map__pins`);
 
     const addressCard = document.querySelector(`#card`)
   .content
@@ -43,6 +43,7 @@
     });
     popupPhotos.append(imgFragment);
     popupAvatar.src = author.avatar;
+    elementList.append(offerAddress);
     return offerAddress;
 
     // window.load(function (cards) {

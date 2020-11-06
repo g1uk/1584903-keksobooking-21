@@ -1,14 +1,18 @@
-'use strict';
+"use strict";
 
 (function () {
   window.offers = function () {
-    window.http(function (cards) {
+    function markersLoad(cards) {
       cards.forEach(function (item) {
-        window.card.activateNearbyOfferCard(item);
+        window.marks.activateNearbyOffersMarks(item);
       });
-      return cards;
-      console.log(cards)
-    }, function () {});
+    }
+
+    function onSuccess(cards) {
+      window.activateMapButton.handler(cards, markersLoad);
+    }
+
+    window.http(onSuccess, function () {});
   };
-  console.log(window.offers())
+  console.log(window.offers());
 })();
