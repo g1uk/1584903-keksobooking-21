@@ -6,9 +6,7 @@
   const activateWindowsFunctions = function (cards, cb) {
     window.page.activate();
     window.form.completion();
-    // window.mark.activateNearbyOffersMarks();
     cb(cards);
-    // window.card.activateNearbyOfferCard();
   };
 
   function handler(cards, cb) {

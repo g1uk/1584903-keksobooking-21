@@ -26,20 +26,6 @@
     });
     elementList.append(offerMark);
     return offerMark;
-
-    // window.http(function (cards) {
-    //   const fragment = document.createDocumentFragment();
-    //   cards.forEach(function (card) {
-    //     const mark = createAddressMark(card);
-    //     fragment.append(mark);
-    //     mark.addEventListener('click', function () {
-    //       window.card.activateNearbyOfferCard(card);
-    //     });
-    //     elementList.append(fragment);
-    //   });
-    //
-    // }, function () {});
-
   };
   window.marks = {
     activateNearbyOffersMarks

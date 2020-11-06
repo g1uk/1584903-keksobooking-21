@@ -45,16 +45,6 @@
     popupAvatar.src = author.avatar;
     elementList.append(offerAddress);
     return offerAddress;
-
-    // window.load(function (cards) {
-    //   const fragment = document.createDocumentFragment();
-    //   let card;
-    //   cards.forEach(function (item) {
-    //     card = createAddressCard(item);
-    //   });
-    //   fragment.append(card);
-    //   elementList.append(fragment);
-    // }, function () {});
   };
   window.card = {
     activateNearbyOfferCard
