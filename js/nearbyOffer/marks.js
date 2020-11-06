@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
   const createNearbyOfferMarks = (offer) => {
 
     const MAP_BUTTON_WIDTH = 50;

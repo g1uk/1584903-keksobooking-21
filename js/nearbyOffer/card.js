@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
   const createNearbyOfferCard = ({offer, author}) => {
 
     const elementList = document.querySelector(`.map__pins`);
