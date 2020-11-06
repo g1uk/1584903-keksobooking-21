@@ -1,7 +1,7 @@
 'use strict';
 
-(function () {
-  const activateNearbyOffersMarks = function () {
+(() => {
+  const createNearbyOfferMarks = (offer) => {
 
     const MAP_BUTTON_WIDTH = 50;
     const MAP_BUTTON_HEIGHT = 70;
@@ -16,25 +16,18 @@
 
     window.form.completion();
 
-    const createAddressMark = function (offer) {
-      const offerMark = addressMark.cloneNode(true);
-      const offerMarkImage = offerMark.querySelector(`img`);
-      offerMark.style = `left: ${offer.location.x + MAP_BUTTON_WIDTH_GAP}px; top: ${offer.location.y + MAP_BUTTON_HEIGHT_GAP}px;`;
-      offerMarkImage.src = `${offer.author.avatar}`;
-      offerMarkImage.alt = `${offer.offer.title}`;
-      return offerMark;
-    };
-
-    window.load(function (cards) {
-      const fragment = document.createDocumentFragment();
-      for (let i = 0; i < cards.length; i++) {
-        fragment.appendChild(createAddressMark(cards[i]));
-      }
-      elementList.append(fragment);
-    }, function () {});
-
+    const offerMark = addressMark.cloneNode(true);
+    const offerMarkImage = offerMark.querySelector(`img`);
+    offerMark.style = `left: ${offer.location.x + MAP_BUTTON_WIDTH_GAP}px; top: ${offer.location.y + MAP_BUTTON_HEIGHT_GAP}px;`;
+    offerMarkImage.src = `${offer.author.avatar}`;
+    offerMarkImage.alt = `${offer.offer.title}`;
+    offerMark.addEventListener(`click`, () => {
+      window.card.createNearbyOfferCard(offer);
+    });
+    elementList.append(offerMark);
+    return offerMark;
   };
-  window.mark = {
-    activateNearbyOffersMarks
+  window.marks = {
+    createNearbyOfferMarks
   };
 })();

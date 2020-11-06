@@ -1,7 +1,7 @@
 'use strict';
 
-(function () {
-  const activate = function () {
+(() => {
+  const activate = () => {
     const mapFadedToken = document.querySelector(`.map`);
     const adForm = document.querySelector(`.ad-form`);
     const adFormChildrenArray = Array.from(adForm.children);
@@ -9,7 +9,7 @@
 
     mapFadedToken.classList.remove(`map--faded`);
     adForm.classList.remove(`ad-form--disabled`);
-    adFormChildrenArray.forEach(function (item) {
+    adFormChildrenArray.forEach((item) => {
       item.classList.remove(`disabled`);
     });
     mapFilters.classList.remove(`ad-form--disabled`);

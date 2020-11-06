@@ -1,7 +1,7 @@
 'use strict';
 
-(function () {
-  const completion = function () {
+(() => {
+  const completion = () => {
     const mapButton = document.querySelector(`.map__pin--main`);
     const address = document.querySelector(`#address`);
     const buttonStyle = getComputedStyle(mapButton);
