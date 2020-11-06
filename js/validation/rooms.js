@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
   const roomsRules = {
     one: [
       {key: `one`, hide: false},
@@ -32,17 +32,17 @@
   const numberOfGuests = document.querySelector(`#capacity`);
   const guestsModel = {};
 
-  numberOfGuests.querySelectorAll(`option`).forEach(function (optionElement) {
+  numberOfGuests.querySelectorAll(`option`).forEach((optionElement) => {
     guestsModel[optionElement.value] = optionElement;
   });
 
-  const guestsRefreshHiddenField = function (selected) {
-    roomsRules[selected].forEach(function ({key, hide}) {
+  const guestsRefreshHiddenField = (selected) => {
+    roomsRules[selected].forEach(({key, hide}) => {
       guestsModel[key].hidden = hide;
     });
   };
 
-  const changeRoomsHandler = function () {
+  const changeRoomsHandler = () => {
     guestsRefreshHiddenField(roomNumber.value);
   };
 

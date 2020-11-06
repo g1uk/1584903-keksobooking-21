@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
 
   const offerTypes = {
     palace: {
@@ -20,10 +20,10 @@
 
   const priceField = document.querySelector(`#price`);
   const typeHousingField = document.querySelector(`#type`);
-  const customPriceValidation = function (cost) {
+  const customPriceValidation = (cost) => {
     priceField.setCustomValidity(`Минимальная стоимость этого жилья равна ${cost}`);
   };
-  priceField.addEventListener(`input`, function () {
+  priceField.addEventListener(`input`, () => {
     const typeHousingValue = typeHousingField.value;
     const priceValue = priceField.value.input;
     const minValue = offerTypes[typeHousingValue].min;
