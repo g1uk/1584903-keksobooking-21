@@ -21,7 +21,7 @@
     offerMark.style = `left: ${offer.location.x + MAP_BUTTON_WIDTH_GAP}px; top: ${offer.location.y + MAP_BUTTON_HEIGHT_GAP}px;`;
     offerMarkImage.src = `${offer.author.avatar}`;
     offerMarkImage.alt = `${offer.offer.title}`;
-    offerMark.addEventListener("click", () => {
+    offerMark.addEventListener(`click`, () => {
       window.card.createNearbyOfferCard(offer);
     });
     elementList.append(offerMark);

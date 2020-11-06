@@ -14,5 +14,6 @@
 
     window.http(onSuccess, () => {});
   };
+  // eslint-disable-next-line no-console
   console.log(window.offers());
 })();
