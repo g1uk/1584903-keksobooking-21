@@ -1,6 +1,6 @@
 'use strict';
 
-(function () {
+(() => {
   const mapFadedToken = document.querySelector(`.map`);
   mapFadedToken.classList.add(`map--faded`);
 
@@ -8,7 +8,7 @@
   adForm.classList.add(`ad-form--disabled`);
 
   const adFormChildrenArray = Array.from(adForm.children);
-  adFormChildrenArray.forEach(function (item) {
+  adFormChildrenArray.forEach((item) => {
     item.classList.add(`disabled`);
   });
 

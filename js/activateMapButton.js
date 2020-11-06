@@ -1,16 +1,16 @@
 "use strict";
 
-(function () {
+(() => {
   const PRIMARY_MOUSE_BUTTON = 0;
   const mapPinMain = document.querySelector(`.map__pin--main`);
-  const activateWindowsFunctions = function (cards, cb) {
+  const activateWindowsFunctions = (cards, cb) => {
     window.page.activate();
     window.form.completion();
     cb(cards);
   };
 
-  function handler(cards, cb) {
-    mapPinMain.addEventListener(`mousedown`, function (evt) {
+  const handler = (cards, cb) => {
+    mapPinMain.addEventListener(`mousedown`, (evt) => {
       if (evt.button === PRIMARY_MOUSE_BUTTON) {
         activateWindowsFunctions(cards, cb);
       } else {
@@ -18,7 +18,7 @@
         alert(`Please click your primary mouse button`);
       }
     });
-    mapPinMain.addEventListener(`keydown`, function (evt) {
+    mapPinMain.addEventListener(`keydown`, (evt) => {
       if (evt.key === `Enter`) {
         activateWindowsFunctions(cards, cb);
       } else {
@@ -26,7 +26,7 @@
         alert(`Please press 'Enter' button`);
       }
     });
-  }
+  };
 
-  window.activateMapButton = { handler };
+  window.activateMapButton = {handler};
 })();
