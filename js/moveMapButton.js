@@ -3,7 +3,7 @@
 (() => {
   const mapPinMove = document.querySelector(`.map__pin--main`);
 
-  mapPinMove.addEventListener(`mousedown`, function (evt) {
+  mapPinMove.addEventListener(`mousedown`, (evt) => {
     evt.preventDefault();
 
     let startCoords = {
@@ -13,12 +13,12 @@
 
     let dragged = false;
 
-    let onMouseMove = function (moveEvt) {
+    const onMouseMove = (moveEvt) => {
       moveEvt.preventDefault();
 
       dragged = true;
 
-      let shift = {
+      const shift = {
         x: startCoords.x - moveEvt.clientX,
         y: startCoords.y - moveEvt.clientY
       };
@@ -35,14 +35,14 @@
 
     };
 
-    const onMouseUp = function (upEvt) {
+    const onMouseUp = (upEvt) => {
       upEvt.preventDefault();
 
       document.removeEventListener(`mousemove`, onMouseMove);
       document.removeEventListener(`mouseup`, onMouseUp);
 
       if (dragged) {
-        const onClickPreventDefault = function (clickEvt) {
+        const onClickPreventDefault = (clickEvt) => {
           clickEvt.preventDefault();
           mapPinMove.removeEventListener(`click`, onClickPreventDefault);
         };
