@@ -2,29 +2,29 @@
 
 (() => {
   const roomsRules = {
-    one: [
-      {key: `one`, hide: false},
-      {key: `two`, hide: true},
-      {key: `three`, hide: true},
-      {key: `not`, hide: true}
+    1: [
+      {key: `1`, hide: false},
+      {key: `2`, hide: true},
+      {key: `3`, hide: true},
+      {key: `0`, hide: true}
     ],
-    two: [
-      {key: `one`, hide: false},
-      {key: `two`, hide: false},
-      {key: `three`, hide: true},
-      {key: `not`, hide: true}
+    2: [
+      {key: `1`, hide: false},
+      {key: `2`, hide: false},
+      {key: `3`, hide: true},
+      {key: `0`, hide: true}
     ],
-    three: [
-      {key: `one`, hide: false},
-      {key: `two`, hide: false},
-      {key: `three`, hide: false},
-      {key: `not`, hide: true}
+    3: [
+      {key: `1`, hide: false},
+      {key: `2`, hide: false},
+      {key: `3`, hide: false},
+      {key: `0`, hide: true}
     ],
-    hundred: [
-      {key: `one`, hide: true},
-      {key: `two`, hide: true},
-      {key: `three`, hide: true},
-      {key: `not`, hide: false}
+    100: [
+      {key: `1`, hide: true},
+      {key: `2`, hide: true},
+      {key: `3`, hide: true},
+      {key: `0`, hide: false}
     ]
   };
 

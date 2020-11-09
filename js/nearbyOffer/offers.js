@@ -8,7 +8,7 @@
   };
 
   const onSuccess = (cards) => {
-    window.activateMapButton.handler(cards, markersLoad);
+    window.mainButton.activate(cards, markersLoad);
   };
 
   window.http(onSuccess, () => {});
