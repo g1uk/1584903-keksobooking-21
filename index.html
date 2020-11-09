@@ -84,7 +84,7 @@
     <!-- Форма объявления -->
     <section class="notice">
       <h2 class="notice__title">Ваше объявление</h2>
-      <form class="ad-form ad-form--disabled" method="post" enctype="multipart/form-data" autocomplete="off">
+      <form class="ad-form ad-form--disabled" id="ad-form" method="post" enctype="multipart/form-data" autocomplete="off">
         <fieldset class="ad-form-header">
           <legend class="ad-form-header__title">Ваша фотография (для карты)</legend>
           <div class="ad-form-header__upload">
@@ -104,7 +104,7 @@
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide">
           <label class="ad-form__label" for="address">Адрес</label>
-          <input id="address" name="address" type="text" readonly>
+          <input id="address" name="address" type="text">
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="type">Тип жилья</label>
@@ -135,19 +135,19 @@
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="room_number">Количество комнат</label>
           <select id="room_number" name="rooms">
-            <option value="one" selected>1 комната</option>
-            <option value="two">2 комнаты</option>
-            <option value="three">3 комнаты</option>
-            <option value="hundred">100 комнат</option>
+            <option value="1" selected>1 комната</option>
+            <option value="2">2 комнаты</option>
+            <option value="3">3 комнаты</option>
+            <option value="100">100 комнат</option>
           </select>
         </fieldset>
         <fieldset class="ad-form__element">
           <label class="ad-form__label" for="capacity">Количество мест</label>
           <select id="capacity" name="capacity">
-            <option value="three" selected>для 3 гостей</option>
-            <option value="two">для 2 гостей</option>
-            <option value="one">для 1 гостя</option>
-            <option value="not">не для гостей</option>
+            <option value="3" selected>для 3 гостей</option>
+            <option value="2">для 2 гостей</option>
+            <option value="1">для 1 гостя</option>
+            <option value="0">не для гостей</option>
           </select>
         </fieldset>
         <fieldset class="ad-form__element ad-form__element--wide features">
@@ -258,7 +258,10 @@
   <script src="js/validation/price.js"></script>
   <script src="js/validation/rooms.js"></script>
   <script src="js/validation/checkin.js"></script>
+  <script src="js/server/successUpload.js"></script>
+  <script src="js/server/errorUpload.js"></script>
   <script src="js/server/http.js"></script>
+  <script src="js/uploadButton.js"></script>
   <script src="js/nearbyOffer/card.js"></script>
   <script src="js/nearbyOffer/marks.js"></script>
   <script src="js/nearbyOffer/offers.js"></script>
