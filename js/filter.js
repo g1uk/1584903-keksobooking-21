@@ -20,8 +20,6 @@
     housingFeatures.disabled = true;
   };
 
-  // deactivateFilters();
-
   const activateFilters = () => {
     window.util.removeDisabled(filtersSelect);
     housingFeatures.disabled = false;
@@ -34,27 +32,13 @@
   };
 
   const filterPrice = (offer) => {
-    // const PriceHandler = {
-    //   any: true,
-    //   low: offer.offer.price < PriceRestrictions.LOWER,
-    //   middle: offer.offer.price >= PriceRestrictions.LOWER && offer.offer.price <= PriceRestrictions.UPPER,
-    //   high: offer.offer.price > PriceRestrictions.UPPER
-    // };
-    if (housingPrice.value === `any`) {
-      return true;
-    } else if (housingPrice.value === `low`) {
-      return offer.offer.price < PriceRestrictions.LOWER;
-    } else if (housingPrice.value === `middle`) {
-      return (
-        offer.offer.price >= PriceRestrictions.LOWER &&
-        offer.offer.price <= PriceRestrictions.UPPER
-      );
-    } else if (housingPrice.value === `high`) {
-      return offer.offer.price > PriceRestrictions.UPPER;
-    }
-
-    // return PriceHandler[housingPrice.value] || PriceHandler.any;
-    return true;
+    const PriceHandler = {
+      any: true,
+      low: offer.offer.price < PriceRestrictions.LOWER,
+      middle: offer.offer.price >= PriceRestrictions.LOWER && offer.offer.price <= PriceRestrictions.UPPER,
+      high: offer.offer.price > PriceRestrictions.UPPER
+    };
+    return PriceHandler[housingPrice.value];
   };
 
   const filterRooms = (offer) => {
