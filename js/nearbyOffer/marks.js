@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 (() => {
   const MAP_BUTTON_WIDTH = 50;
@@ -8,51 +8,57 @@
   const MARKS_COUNT = 5;
 
   const elementList = document.querySelector(`.map__pins`);
+  const loadedPins = [];
 
-  const addressMark = document.querySelector(`#pin`)
-    .content
-    .querySelector(`.map__pin`);
-  const offerMark = addressMark.cloneNode(true);
+  const addressMark = document
+    .querySelector(`#pin`)
+    .content.querySelector(`.map__pin`);
 
   const createMark = (offer) => {
+    const offerMark = addressMark.cloneNode(true);
     const offerMarkImage = offerMark.querySelector(`img`);
-    offerMark.style = `left: ${offer.location.x + MAP_BUTTON_WIDTH_GAP}px; top: ${offer.location.y + MAP_BUTTON_HEIGHT_GAP}px;`;
+    offerMark.style = `left: ${
+      offer.location.x + MAP_BUTTON_WIDTH_GAP
+    }px; top: ${offer.location.y + MAP_BUTTON_HEIGHT_GAP}px;`;
     offerMarkImage.src = `${offer.author.avatar}`;
     offerMarkImage.alt = `${offer.offer.title}`;
     return offerMark;
   };
 
   const createNearbyOfferMarks = (offer) => {
-
     window.form.completion();
-    createMark(offer);
+    const marker = createMark(offer);
 
-    offerMark.addEventListener(`click`, () => {
+    marker.addEventListener(`click`, () => {
       window.card.createNearbyOfferCard(offer);
     });
-    return offerMark;
+
+    return marker;
   };
 
-  const render = (marks) => {
+  const render = (offers) => {
     const fragment = document.createDocumentFragment();
-    const preparedArray = marks.splice(0, MARKS_COUNT);
+    const preparedArray = offers.splice(0, MARKS_COUNT);
     preparedArray.forEach((item) => {
-      fragment.append(createMark(item));
+      fragment.append(item);
     });
-    elementList.append(offerMark);
+    elementList.append(fragment);
   };
 
   const removeMark = () => {
-    const mapMarksItems = document.querySelectorAll(`.map__pin:not(.map__pin--main)`);
+    const mapMarksItems = document.querySelectorAll(
+        `.map__pin:not(.map__pin--main)`
+    );
     mapMarksItems.forEach((item) => {
       item.remove();
     });
   };
 
   window.marks = {
+    loadedPins,
     createMark,
     createNearbyOfferMarks,
     render,
-    remove: removeMark
+    remove: removeMark,
   };
 })();

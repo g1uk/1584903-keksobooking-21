@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 
 (() => {
   const PriceRestrictions = {
     LOWER: 10000,
-    UPPER: 50000
+    UPPER: 50000,
   };
 
   const filters = document.querySelector(`.map__filters`);
@@ -28,28 +28,47 @@
   };
 
   const filterType = (offer) => {
-    return housingType.value === `any` || offer.offer.type === housingType.value;
+    return (
+      housingType.value === `any` || offer.offer.type === housingType.value
+    );
   };
 
   const filterPrice = (offer) => {
+    // const PriceHandler = {
+    //   any: true,
+    //   low: offer.offer.price < PriceRestrictions.LOWER,
+    //   middle: offer.offer.price >= PriceRestrictions.LOWER && offer.offer.price <= PriceRestrictions.UPPER,
+    //   high: offer.offer.price > PriceRestrictions.UPPER
+    // };
     if (housingPrice.value === `any`) {
       return true;
     } else if (housingPrice.value === `low`) {
       return offer.offer.price < PriceRestrictions.LOWER;
     } else if (housingPrice.value === `middle`) {
-      return offer.offer.price >= PriceRestrictions.LOWER && offer.offer.price <= PriceRestrictions.UPPER;
+      return (
+        offer.offer.price >= PriceRestrictions.LOWER &&
+        offer.offer.price <= PriceRestrictions.UPPER
+      );
     } else if (housingPrice.value === `high`) {
       return offer.offer.price > PriceRestrictions.UPPER;
     }
+
+    // return PriceHandler[housingPrice.value] || PriceHandler.any;
     return true;
   };
 
   const filterRooms = (offer) => {
-    return housingRooms.value === `any` || offer.offer.rooms === parseInt(housingRooms.value, 10);
+    return (
+      housingRooms.value === `any` ||
+      offer.offer.rooms === parseInt(housingRooms.value, 10)
+    );
   };
 
   const filterGuests = (offer) => {
-    return housingGuests.value === `any` || offer.offer.guests === parseInt(housingGuests.value, 10);
+    return (
+      housingGuests.value === `any` ||
+      offer.offer.guests === parseInt(housingGuests.value, 10)
+    );
   };
 
   const filterFeatures = (offer) => {
@@ -60,11 +79,19 @@
   };
 
   const updateOffers = () => {
-    const marksCopy = [].slice();
-    const filterMarks = marksCopy.filter((pin) => {
-      return filterType(pin) && filterPrice(pin) && filterRooms(pin) && filterGuests(pin) && filterFeatures(pin);
-    });
-    window.marks.render(filterMarks);
+    window.marks.render(
+        window.marks.loadedPins
+        .filter((pin) => {
+          return (
+            filterType(pin) &&
+            filterPrice(pin) &&
+            filterRooms(pin) &&
+            filterGuests(pin) &&
+            filterFeatures(pin)
+          );
+        })
+        .map((item) => window.marks.createNearbyOfferMarks(item))
+    );
   };
 
   const onFilterChange = window.debounce(() => {
@@ -77,8 +104,7 @@
 
   window.filter = {
     activate: activateFilters,
-    deactivate: deactivateFilters
+    deactivate: deactivateFilters,
+    updateOffers,
   };
-
 })();
-

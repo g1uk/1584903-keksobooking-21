@@ -6,15 +6,14 @@
   window.debounce = (cb) => {
     let lastTimeout = null;
 
-    return () => {
+    return (...options) => {
       // eslint-disable-next-line no-undef
-      const parameters = arguments;
       if (lastTimeout) {
         window.clearTimeout(lastTimeout);
       }
       lastTimeout = window.setTimeout(() => {
         // eslint-disable-next-line prefer-spread
-        cb.apply(null, parameters);
+        cb.call(null, options);
       }, DEBOUNCE_INTERVAL);
     };
   };
