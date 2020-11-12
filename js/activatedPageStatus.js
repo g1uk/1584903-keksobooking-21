@@ -12,7 +12,7 @@
     adFormChildrenArray.forEach((item) => {
       item.classList.remove(`disabled`);
     });
-    mapFilters.classList.remove(`ad-form--disabled`);
+    mapFilters.classList.remove(`hidden`);
   };
   window.page = {
     activate

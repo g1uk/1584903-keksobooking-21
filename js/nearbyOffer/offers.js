@@ -2,13 +2,13 @@
 
 (() => {
   const markersLoad = (cards) => {
-    cards.forEach((item) => {
-      window.marks.createNearbyOfferMarks(item);
-    });
+    window.marks.loadedPins = [...cards];
+    window.filter.updateOffers();
   };
 
   const onSuccess = (cards) => {
     window.mainButton.activate(cards, markersLoad);
+    window.filter.activate();
   };
 
   window.http(onSuccess, () => {});

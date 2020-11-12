@@ -46,7 +46,15 @@
     elementList.append(offerAddress);
     return offerAddress;
   };
+
+  const removeCard = () => {
+    const mapCard = document.querySelector(`.map__card`);
+    if (mapCard) {
+      mapCard.remove();
+    }
+  };
   window.card = {
-    createNearbyOfferCard
+    createNearbyOfferCard,
+    remove: removeCard
   };
 })();

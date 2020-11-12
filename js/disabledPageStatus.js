@@ -13,5 +13,5 @@
   });
 
   const mapFilters = document.querySelector(`.map__filters`);
-  mapFilters.classList.add(`ad-form--disabled`);
+  mapFilters.classList.add(`hidden`);
 })();
