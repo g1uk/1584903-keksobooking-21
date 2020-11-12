@@ -7,12 +7,10 @@
     let lastTimeout = null;
 
     return (...options) => {
-      // eslint-disable-next-line no-undef
       if (lastTimeout) {
-        window.clearTimeout(lastTimeout);
+        clearTimeout(lastTimeout);
       }
-      lastTimeout = window.setTimeout(() => {
-        // eslint-disable-next-line prefer-spread
+      lastTimeout = setTimeout(() => {
         cb.call(null, options);
       }, DEBOUNCE_INTERVAL);
     };
