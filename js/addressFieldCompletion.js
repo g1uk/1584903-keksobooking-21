@@ -12,6 +12,7 @@
 
     address.classList.add(`placeholder`);
     address.placeholder = `${buttonLeftStyle + Math.round(buttonWidthStyle / 2)}, ${buttonTopStyle + buttonHeightStyle}`;
+    address.value = `${buttonLeftStyle + Math.round(buttonWidthStyle / 2)}, ${buttonTopStyle + buttonHeightStyle}`;
   };
 
   window.form = {
