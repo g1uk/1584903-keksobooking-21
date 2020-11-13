@@ -26,8 +26,8 @@
 
   window.successUpload = () => {
     const message = successPopup.cloneNode(true);
-    document.body.append(message);
 
+    document.body.append(message);
     document.addEventListener(`keydown`, onKeydown);
     document.addEventListener(`click`, onClosePopup);
   };

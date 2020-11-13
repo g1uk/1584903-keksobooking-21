@@ -1,16 +1,20 @@
 'use strict';
 
 (() => {
+  const setDisabled = (elements) => {
+    elements.forEach((item) => {
+      item.disabled = true;
+    });
+  };
+
+  const removeDisabled = (elements) => {
+    elements.forEach((item) => {
+      item.disabled = false;
+    });
+  };
+
   window.util = {
-    setDisabled: (elements) => {
-      elements.forEach((item) => {
-        item.disabled = true;
-      });
-    },
-    removeDisabled: (elements) => {
-      elements.forEach((item) => {
-        item.disabled = false;
-      });
-    }
+    setDisabled,
+    removeDisabled
   };
 })();

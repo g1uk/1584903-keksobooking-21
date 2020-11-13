@@ -39,7 +39,6 @@
       ],
     },
   };
-
   const roomNumber = document.querySelector(`#room_number`);
   const numberOfGuests = document.querySelector(`#capacity`);
   const guestsModel = {};
@@ -61,5 +60,4 @@
 
   roomNumber.addEventListener(`change`, onChangeRooms);
   onChangeRooms();
-
 })();

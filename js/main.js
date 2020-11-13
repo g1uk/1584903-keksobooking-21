@@ -1,7 +1,6 @@
 "use strict";
 
 (() => {
-
   window.form.completion();
 
   const markersLoad = (cards) => {

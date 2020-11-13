@@ -5,7 +5,6 @@
     LOWER: 10000,
     UPPER: 50000,
   };
-
   const filters = document.querySelector(`.map__filters`);
   const filtersSelect = filters.querySelectorAll(`select`);
   const housingType = filters.querySelector(`#housing-type`);
@@ -30,13 +29,13 @@
   };
 
   const filterPrice = (offer) => {
-    const PriceHandler = {
+    const PriceFilterTypes = {
       any: true,
       low: offer.offer.price < PriceRestrictions.LOWER,
       middle: offer.offer.price >= PriceRestrictions.LOWER && offer.offer.price <= PriceRestrictions.UPPER,
       high: offer.offer.price > PriceRestrictions.UPPER
     };
-    return PriceHandler[housingPrice.value];
+    return PriceFilterTypes[housingPrice.value];
   };
 
   const filterRooms = (offer) => {
@@ -55,6 +54,7 @@
 
   const filterFeatures = (offer) => {
     const checkedFeatures = housingFeatures.querySelectorAll(`input:checked`);
+
     return [].every.call(checkedFeatures, (element) => {
       return offer.offer.features.includes(element.value);
     });

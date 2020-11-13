@@ -14,6 +14,7 @@
     });
     mapFilters.classList.remove(`hidden`);
   };
+
   window.page = {
     activate
   };

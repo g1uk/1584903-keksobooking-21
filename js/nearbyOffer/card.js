@@ -9,8 +9,6 @@
 
   const createNearbyOffer = ({offer, author}) => {
 
-    removeCard();
-
     const img = document.createElement(`img`);
     img.width = 45;
     img.height = 40;
@@ -30,6 +28,7 @@
     const popupPhotos = offerCard.querySelector(`.popup__photos`);
     const popupAvatar = offerCard.querySelector(`.popup__avatar`);
     const {title, address, price, type, rooms, guests, checkin, checkout, features, description, photos} = offer;
+
     popupTitle.textContent = title;
     popupTextAddress.textContent = address;
     popupTextPrice.textContent = `${price}₽/ночь`;
@@ -45,6 +44,8 @@
     });
     popupPhotos.append(imgFragment);
     popupAvatar.src = author.avatar;
+
+    removeCard();
     elementList.append(offerCard);
     closeButton = offerCard.querySelector(`.popup__close`);
     closeButton.addEventListener(`click`, onCloseClick);
@@ -70,6 +71,7 @@
       mapCard.remove();
     }
   };
+
   window.card = {
     createNearbyOffer,
     remove: removeCard

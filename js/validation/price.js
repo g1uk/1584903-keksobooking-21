@@ -1,7 +1,6 @@
 'use strict';
 
 (() => {
-
   const OfferTypes = {
     palace: {
       name: `Дворец`,
@@ -17,12 +16,13 @@
       min: 0
     }
   };
-
   const priceField = document.querySelector(`#price`);
   const typeHousingField = document.querySelector(`#type`);
+
   const customPriceValidation = (cost) => {
     priceField.setCustomValidity(`Минимальная стоимость этого жилья равна ${cost}`);
   };
+
   priceField.addEventListener(`input`, () => {
     const typeHousingValue = typeHousingField.value;
     const priceValue = priceField.value.input;
@@ -34,5 +34,4 @@
     }
     priceField.reportValidity();
   });
-
 })();

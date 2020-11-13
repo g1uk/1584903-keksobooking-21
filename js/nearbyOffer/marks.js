@@ -6,10 +6,8 @@
   const MAP_BUTTON_WIDTH_GAP = MAP_BUTTON_WIDTH / 2;
   const MAP_BUTTON_HEIGHT_GAP = MAP_BUTTON_HEIGHT / 2;
   const MARKS_COUNT = 5;
-
   const elementList = document.querySelector(`.map__pins`);
   const loadedPins = [];
-
   const addressMark = document
     .querySelector(`#pin`)
     .content.querySelector(`.map__pin`);
@@ -31,7 +29,6 @@
     marker.addEventListener(`click`, () => {
       window.card.createNearbyOffer(offer);
     });
-
     return marker;
   };
 

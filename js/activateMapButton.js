@@ -3,6 +3,7 @@
 (() => {
   const PRIMARY_MOUSE_BUTTON = 0;
   const mapPinMain = document.querySelector(`.map__pin--main`);
+
   const activateWindowsFunctions = (cards, cb) => {
     window.page.activate();
     cb(cards);

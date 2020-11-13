@@ -18,6 +18,5 @@
   window.form = {
     completion
   };
-
 })();
 
