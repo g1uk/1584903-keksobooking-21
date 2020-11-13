@@ -25,12 +25,11 @@
     return offerMark;
   };
 
-  const createNearbyOfferMarks = (offer) => {
-    window.form.completion();
+  const createNearbyOfferPins = (offer) => {
     const marker = createMark(offer);
 
     marker.addEventListener(`click`, () => {
-      window.card.createNearbyOfferCard(offer);
+      window.card.createNearbyOffer(offer);
     });
 
     return marker;
@@ -45,7 +44,7 @@
     elementList.append(fragment);
   };
 
-  const removeMark = () => {
+  const remove = () => {
     const mapMarksItems = document.querySelectorAll(
         `.map__pin:not(.map__pin--main)`
     );
@@ -56,9 +55,8 @@
 
   window.marks = {
     loadedPins,
-    createMark,
-    createNearbyOfferMarks,
+    createNearbyOfferPins,
     render,
-    remove: removeMark,
+    remove
   };
 })();

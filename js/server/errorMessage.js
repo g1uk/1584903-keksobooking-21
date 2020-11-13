@@ -1,11 +1,11 @@
 'use strict';
 
 (() => {
-  const errorPopup = document.querySelector(`#error`)
+  const errorPopupTemplate = document.querySelector(`#error`)
     .content
     .querySelector(`.error`);
 
-  const tryAgainButton = errorPopup.querySelector(`.error__button`);
+  const tryAgainButton = errorPopupTemplate.querySelector(`.error__button`);
 
   const onKeydown = (evt) => {
     if (evt.key === `Escape`) {
@@ -24,9 +24,11 @@
     document.querySelector(`.error`).remove();
   };
 
-  window.errorUpload = () => {
-    const message = errorPopup.cloneNode(true);
-    document.body.append(message);
+  window.errorMessage = (errorMessage) => {
+    const errorPopup = errorPopupTemplate.cloneNode(true);
+    const message = errorPopup.querySelector(`.error__message`);
+    message.innerText = errorMessage;
+    document.body.append(errorPopup);
 
     document.addEventListener(`keydown`, onKeydown);
     document.addEventListener(`click`, onClosePopup);

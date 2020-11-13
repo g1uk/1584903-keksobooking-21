@@ -5,7 +5,6 @@
   const mapPinMain = document.querySelector(`.map__pin--main`);
   const activateWindowsFunctions = (cards, cb) => {
     window.page.activate();
-    window.form.completion();
     cb(cards);
   };
 

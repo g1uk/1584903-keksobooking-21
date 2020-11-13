@@ -1,57 +1,57 @@
 'use strict';
 
 (() => {
+  const PRIMARY_MOUSE_BUTTON = 0;
   const mapPinMove = document.querySelector(`.map__pin--main`);
 
   mapPinMove.addEventListener(`mousedown`, (evt) => {
     evt.preventDefault();
-
-    let startCoords = {
-      x: evt.clientX,
-      y: evt.clientY
-    };
-
-    let dragged = false;
-
-    const onMouseMove = (moveEvt) => {
-      moveEvt.preventDefault();
-
-      dragged = true;
-
-      const shift = {
-        x: startCoords.x - moveEvt.clientX,
-        y: startCoords.y - moveEvt.clientY
+    if (evt.button === PRIMARY_MOUSE_BUTTON) {
+      const startCoords = {
+        x: evt.clientX,
+        y: evt.clientY
       };
 
-      startCoords = {
-        x: moveEvt.clientX,
-        y: moveEvt.clientY
-      };
+      let dragged = false;
 
-      mapPinMove.style.top = (mapPinMove.offsetTop - shift.y) + `px`;
-      mapPinMove.style.left = (mapPinMove.offsetLeft - shift.x) + `px`;
+      const onMouseMove = (moveEvt) => {
+        moveEvt.preventDefault();
 
-      window.form.completion();
+        dragged = true;
 
-    };
-
-    const onMouseUp = (upEvt) => {
-      upEvt.preventDefault();
-
-      document.removeEventListener(`mousemove`, onMouseMove);
-      document.removeEventListener(`mouseup`, onMouseUp);
-
-      if (dragged) {
-        const onClickPreventDefault = (clickEvt) => {
-          clickEvt.preventDefault();
-          mapPinMove.removeEventListener(`click`, onClickPreventDefault);
+        const shift = {
+          x: startCoords.x - moveEvt.clientX,
+          y: startCoords.y - moveEvt.clientY
         };
-        mapPinMove.addEventListener(`click`, onClickPreventDefault);
-      }
-    };
 
-    document.addEventListener(`mousemove`, onMouseMove);
-    document.addEventListener(`mouseup`, onMouseUp);
+        startCoords.x = moveEvt.clientX;
+        startCoords.y = moveEvt.clientY;
+
+        mapPinMove.style.top = (mapPinMove.offsetTop - shift.y) + `px`;
+        mapPinMove.style.left = (mapPinMove.offsetLeft - shift.x) + `px`;
+
+        window.form.completion();
+
+      };
+
+      const onMouseUp = (upEvt) => {
+        upEvt.preventDefault();
+
+        document.removeEventListener(`mousemove`, onMouseMove);
+        document.removeEventListener(`mouseup`, onMouseUp);
+
+        if (dragged) {
+          const onClickPreventDefault = (clickEvt) => {
+            clickEvt.preventDefault();
+            mapPinMove.removeEventListener(`click`, onClickPreventDefault);
+          };
+          mapPinMove.addEventListener(`click`, onClickPreventDefault);
+        }
+      };
+
+      document.addEventListener(`mousemove`, onMouseMove);
+      document.addEventListener(`mouseup`, onMouseUp);
+    }
   });
 
 })();

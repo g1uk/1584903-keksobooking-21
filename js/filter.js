@@ -14,13 +14,11 @@
   const housingGuests = filters.querySelector(`#housing-guests`);
   const housingFeatures = filters.querySelector(`#housing-features`);
 
-  const deactivateFilters = () => {
+  const deactivate = () => {
     filters.reset();
-    window.util.setDisabled(filtersSelect);
-    housingFeatures.disabled = true;
   };
 
-  const activateFilters = () => {
+  const activate = () => {
     window.util.removeDisabled(filtersSelect);
     housingFeatures.disabled = false;
   };
@@ -64,17 +62,12 @@
 
   const updateOffers = () => {
     window.marks.render(
-        window.marks.loadedPins
-        .filter((pin) => {
-          return (
-            filterType(pin) &&
-            filterPrice(pin) &&
-            filterRooms(pin) &&
-            filterGuests(pin) &&
-            filterFeatures(pin)
-          );
-        })
-        .map((item) => window.marks.createNearbyOfferMarks(item))
+        [filterType, filterPrice, filterRooms, filterGuests, filterFeatures]
+        .reduce(
+            (acc, filter) => acc.filter((pin) => filter(pin)),
+            window.marks.loadedPins
+        )
+        .map((item) => window.marks.createNearbyOfferPins(item))
     );
   };
 
@@ -87,8 +80,8 @@
   filters.addEventListener(`change`, onFilterChange);
 
   window.filter = {
-    activate: activateFilters,
-    deactivate: deactivateFilters,
+    activate,
+    deactivate,
     updateOffers,
   };
 })();

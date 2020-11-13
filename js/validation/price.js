@@ -2,7 +2,7 @@
 
 (() => {
 
-  const offerTypes = {
+  const OfferTypes = {
     palace: {
       name: `Дворец`,
       min: 10000},
@@ -26,7 +26,7 @@
   priceField.addEventListener(`input`, () => {
     const typeHousingValue = typeHousingField.value;
     const priceValue = priceField.value.input;
-    const minValue = offerTypes[typeHousingValue].min;
+    const minValue = OfferTypes[typeHousingValue].min;
 
     priceField.min = minValue;
     if (priceValue < minValue) {

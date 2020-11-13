@@ -6,7 +6,7 @@ publishForm.addEventListener(`submit`, (evt) => {
   evt.preventDefault();
   window.http(
       window.successUpload,
-      window.errorUpload,
+      window.errorMessage,
       new FormData(publishForm));
 
 });

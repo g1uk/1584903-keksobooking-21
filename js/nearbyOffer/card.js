@@ -1,13 +1,15 @@
 'use strict';
 
 (() => {
-  const createNearbyOfferCard = ({offer, author}) => {
+  const elementList = document.querySelector(`.map__pins`);
+  const addressCard = document.querySelector(`#card`)
+    .content
+    .querySelector(`.map__card`);
+  let closeButton;
 
-    const elementList = document.querySelector(`.map__pins`);
+  const createNearbyOffer = ({offer, author}) => {
 
-    const addressCard = document.querySelector(`#card`)
-  .content
-  .querySelector(`.map__card`);
+    removeCard();
 
     const img = document.createElement(`img`);
     img.width = 45;
@@ -16,17 +18,17 @@
     img.className = `popup__photo`;
 
     const imgFragment = document.createDocumentFragment();
-    const offerAddress = addressCard.cloneNode(true);
-    const popupTitle = offerAddress.querySelector(`.popup__title`);
-    const popupTextAddress = offerAddress.querySelector(`.popup__text--address`);
-    const popupTextPrice = offerAddress.querySelector(`.popup__text--price`);
-    const popupType = offerAddress.querySelector(`.popup__type`);
-    const popupTextCapacity = offerAddress.querySelector(`.popup__text--capacity`);
-    const popupTextTime = offerAddress.querySelector(`.popup__text--time`);
-    const popupFeatures = offerAddress.querySelector(`.popup__features`);
-    const popupDescription = offerAddress.querySelector(`.popup__description`);
-    const popupPhotos = offerAddress.querySelector(`.popup__photos`);
-    const popupAvatar = offerAddress.querySelector(`.popup__avatar`);
+    const offerCard = addressCard.cloneNode(true);
+    const popupTitle = offerCard.querySelector(`.popup__title`);
+    const popupTextAddress = offerCard.querySelector(`.popup__text--address`);
+    const popupTextPrice = offerCard.querySelector(`.popup__text--price`);
+    const popupType = offerCard.querySelector(`.popup__type`);
+    const popupTextCapacity = offerCard.querySelector(`.popup__text--capacity`);
+    const popupTextTime = offerCard.querySelector(`.popup__text--time`);
+    const popupFeatures = offerCard.querySelector(`.popup__features`);
+    const popupDescription = offerCard.querySelector(`.popup__description`);
+    const popupPhotos = offerCard.querySelector(`.popup__photos`);
+    const popupAvatar = offerCard.querySelector(`.popup__avatar`);
     const {title, address, price, type, rooms, guests, checkin, checkout, features, description, photos} = offer;
     popupTitle.textContent = title;
     popupTextAddress.textContent = address;
@@ -43,18 +45,33 @@
     });
     popupPhotos.append(imgFragment);
     popupAvatar.src = author.avatar;
-    elementList.append(offerAddress);
-    return offerAddress;
+    elementList.append(offerCard);
+    closeButton = offerCard.querySelector(`.popup__close`);
+    closeButton.addEventListener(`click`, onCloseClick);
+    document.addEventListener(`keydown`, onKeyDown);
+    return offerCard;
+  };
+
+  const onCloseClick = () => {
+    removeCard();
+  };
+
+  const onKeyDown = (evt) => {
+    if (evt.key === `Escape`) {
+      removeCard();
+    }
   };
 
   const removeCard = () => {
     const mapCard = document.querySelector(`.map__card`);
     if (mapCard) {
+      closeButton.removeEventListener(`click`, onCloseClick);
+      document.removeEventListener(`keydown`, onKeyDown);
       mapCard.remove();
     }
   };
   window.card = {
-    createNearbyOfferCard,
+    createNearbyOffer,
     remove: removeCard
   };
 })();

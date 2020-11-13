@@ -10,7 +10,7 @@
     mapFadedToken.classList.remove(`map--faded`);
     adForm.classList.remove(`ad-form--disabled`);
     adFormChildrenArray.forEach((item) => {
-      item.classList.remove(`disabled`);
+      item.disabled = false;
     });
     mapFilters.classList.remove(`hidden`);
   };
