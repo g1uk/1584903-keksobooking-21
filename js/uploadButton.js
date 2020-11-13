@@ -7,6 +7,6 @@ publishForm.addEventListener(`submit`, (evt) => {
   window.http(
       window.successUpload,
       window.errorUpload,
-      new FormData(publishForm)); // todo вернуть readonly для адреса
+      new FormData(publishForm));
 
 });
