@@ -60,4 +60,8 @@
 
   roomNumber.addEventListener(`change`, onChangeRooms);
   onChangeRooms();
+
+  window.rooms = {
+    onChangeRooms
+  };
 })();

@@ -21,5 +21,7 @@
 
     window.marks.remove();
     window.form.completion();
+    window.rooms.onChangeRooms();
+    window.marks.loadedPins = [];
   };
 })();
